@@ -4,3 +4,6 @@
 [submodule "irplus-tapis"]
 	path = irplus-tapis
 	url = https://github.com/ireceptor-plus/tapis.git
+[submodule "vdjserver-agave"]
+	path = vdjserver-agave
+	url = https://bitbucket.org/vdjserver/vdjserver-agave.git
