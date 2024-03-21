@@ -1,0 +1,6 @@
+[submodule "sandbox"]
+	path = sandbox
+	url = https://github.com/sfu-ireceptor/sandbox
+[submodule "irplus-tapis"]
+	path = irplus-tapis
+	url = https://github.com/ireceptor-plus/tapis.git
