@@ -1,5 +1,23 @@
 # ak-tools
 AIRR Knowledge toolkit
+
+## Developer setup
+
+Setup the local source code.
+
+```
+git clone https://github.com/airr-knowledge/ak-tools.git
+cd ak-tools
+
+# init submodules
+git submodule update --init --recursive
+```
+
+Use the docker container to have a consistent development environment.
+
+* `docker build . -t airrknowledge/ak-tools`: build container with local code.
+* `docker run -v $PWD:/work -it airrknowledge/ak-tools bash`: run container shell with local code mounted at /work.
+
 ## Related group tools
 ### iReceptor related tools
 A list of related and useful tools that have been developed through the [iReceptor project](https://github.com/sfu-ireceptor):
