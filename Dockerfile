@@ -8,6 +8,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
     python3-pip \
     python3-sphinx \
     python3-scipy \
+    python3-venv \
     libyaml-dev \
     r-base \
     r-base-dev \
@@ -15,22 +16,25 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
     curl \
     jq \
     bsdmainutils \
-    nano
+    nano \
+    rsync
 
 RUN pip3 install \
     pandas \
     biopython \
     matplotlib \
-    airr==v1.4.1 \
+    airr \
     tapipy
 
-# Tapis V2 CLI
-RUN cd / && git clone https://github.com/TACC-Cloud/tapis-cli.git
-RUN cd /tapis-cli && pip3 install --upgrade .
+RUN pip3 install --upgrade requests
 
 # Copy source
-RUN mkdir /ak-tools
-COPY . /ak-tools
+RUN mkdir /vdjserver-tapis
+COPY ./vdjserver-tapis /vdjserver-tapis
+ENV PATH /vdjserver-tapis/bin:$PATH
 
-# old-style Agave V2 CLI
-ENV PATH /ak-tools/vdjserver-agave/agave-cli/bin:$PATH
+# Tapis V3 CLI
+#RUN cd / && git clone https://github.com/tapis-project/tapisv3-cli.git
+#RUN cd /tapisv3-cli && ./install
+
+ENTRYPOINT ["/vdjserver-tapis/bin/entrypoint.sh"]
