@@ -31,10 +31,12 @@ RUN pip3 install --upgrade requests
 # Copy source
 RUN mkdir /vdjserver-tapis
 COPY ./vdjserver-tapis /vdjserver-tapis
-ENV PATH /vdjserver-tapis/bin:$PATH
+ENV PATH=/vdjserver-tapis/bin:$PATH
 
-# Tapis V3 CLI
-#RUN cd / && git clone https://github.com/tapis-project/tapisv3-cli.git
-#RUN cd /tapisv3-cli && ./install
+# VDJServer tools
+RUN cd /vdjserver-tapis/python && pip3 install .
+
+# set the working directory in the container
+WORKDIR /work
 
 ENTRYPOINT ["/vdjserver-tapis/bin/entrypoint.sh"]
