@@ -1,10 +1,10 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 LABEL maintainer="AIRR Knowledge"
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -y --fix-missing \
     git \
-    python3 \
+    python3-full \
     python3-pip \
     python3-sphinx \
     python3-scipy \
@@ -18,6 +18,9 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && apt-get install -
     bsdmainutils \
     nano \
     rsync
+
+RUN python3 -m venv /ak-tools-env
+ENV PATH=/ak-tools-env/bin:$PATH
 
 RUN pip3 install \
     pandas \
